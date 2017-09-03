@@ -12,4 +12,23 @@ public class ArtistController {
         ModelAndView model = new ModelAndView("index");
         return model;
     }
+    
+    @GetMapping(path="/contact")
+    public ModelAndView contact() {
+        ModelAndView model = new ModelAndView("contact");
+        return model;
+    }
+    
+    @GetMapping(path="/about")
+    public ModelAndView about() {
+        ModelAndView model = new ModelAndView("about");
+        return model;
+    }
+    
+    @GetMapping(path="/painting")
+    public ModelAndView painting() {
+        ModelAndView model = new ModelAndView("painting");
+        return model;
+    }
+    
 }

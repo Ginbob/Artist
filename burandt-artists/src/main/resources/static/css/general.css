@@ -4,3 +4,14 @@
 	margin-top: 50px;
 }
 
+a.menu-link:hover {
+	text-decoration: none;
+}
+
+.painting-menu {
+	background: url('/icons/painting.png');
+}
+
+.jumbotron {
+	margin-bottom: 0;
+}
