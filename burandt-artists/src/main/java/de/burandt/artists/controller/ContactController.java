@@ -1,9 +1,15 @@
 package de.burandt.artists.controller;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,22 +19,35 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContactController {
 	
 	@Autowired
-	private MailSender mailSender;
+	private JavaMailSender mailSender;
 	
-	@PostMapping(path="/sendMessageFromContact")
-	public ModelAndView sendMessageFromContact(@RequestParam(name="c-email") String email,
-			@RequestParam(name="c-reason") String contactReson,
-			@RequestParam(name="c-message") String contactMessage) {
-		ModelAndView model = new ModelAndView();
+	@Autowired
+	private SimpleMailMessage templateMessage;
+	
+	@PostMapping(path="/sendMessage")
+	public ModelAndView sendMessageFromContact(@RequestParam(name="c-email") final String email,
+			@RequestParam(name="c-reason") final String contactReason,
+			@RequestParam(name="c-message") final String contactMessage) {
+		ModelAndView model = new ModelAndView("messageSent");
 		
-		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setFrom(email);
-		msg.setTo("henning.nobbe@innoq.com");
-		msg.setSubject(contactReson);
-		msg.setText(contactMessage);
+		MimeMessagePreparator message = new MimeMessagePreparator() {
+			
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("henning.nobbe@gmail.com"));
+				mimeMessage.setFrom(new InternetAddress(email));
+				mimeMessage.setText(contactMessage);
+				mimeMessage.setSubject(contactReason);
+			}
+		};
+//		SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+//		msg.setFrom(email);
+//		msg.setTo("henning.nobbe@gmail.com");
+//		msg.setSubject(contactReason);
+//		msg.setText(contactMessage);
 		
 		try {
-			mailSender.send(msg);
+			mailSender.send(message);
 		}
 	    catch (MailException ex) {
 	        // simply log it and go on...

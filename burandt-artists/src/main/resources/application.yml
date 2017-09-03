@@ -2,13 +2,10 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: henning.nobbe
-    password: #9Iguodala
-
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
- 
+    ssl: yes
+    user: "henning.nobbe@gmail.com"
+    password: 
+    auth: true
+    STARTTLS:
+      enable: true
+    

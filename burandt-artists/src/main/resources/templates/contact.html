@@ -13,11 +13,11 @@
          <p>Kontaktieren Sie mich gerne.</p>
       </div>
 	   <div class="container">
-	      <form class="form-group" th:action="@{/sendMessageFromContact}" method="Post">
+	      <form class="form-group" action="/sendMessage" method="Post">
 	         <label for="contact-email">E-Mail:</label>
 	         <input type="email" class="form-control contact-input" id="contact-email" name="c-email" required="required" placeholder="E-Mail-Adresse"></input>
 	         <label for="contact-reason">Ihr Anliegen:</label>
-	         <input type="text" class="form-control contact-input" id="contact-reason" name="c-reason" required="required" placeholder="Ihr Anliegen..."></input>
+	         <input type="text" class="form-control contact-input" id="contact-reason" name="c-reason" required="required" placeholder="Betreff"></input>
 	         <label for="contact-message">Ihre Nachricht:</label>
 	         <textarea class="form-control contact-input" id="contact-message" name="c-message" required="required" placeholder="Schreiben Sie Ihre Nachricht hier..."></textarea>
 	         <input type="submit" class="btn btn-primary" value="Nachricht senden"></input>
