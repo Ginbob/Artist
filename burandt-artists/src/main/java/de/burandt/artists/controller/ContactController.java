@@ -21,9 +21,6 @@ public class ContactController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@Autowired
-	private SimpleMailMessage templateMessage;
-	
 	@PostMapping(path="/sendMessage")
 	public ModelAndView sendMessageFromContact(@RequestParam(name="c-email") final String email,
 			@RequestParam(name="c-reason") final String contactReason,
@@ -40,11 +37,6 @@ public class ContactController {
 				mimeMessage.setSubject(contactReason);
 			}
 		};
-//		SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
-//		msg.setFrom(email);
-//		msg.setTo("henning.nobbe@gmail.com");
-//		msg.setSubject(contactReason);
-//		msg.setText(contactMessage);
 		
 		try {
 			mailSender.send(message);
