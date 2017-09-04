@@ -2,6 +2,7 @@ package de.burandt.artists.controller;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -13,13 +14,15 @@ import javax.mail.internet.MimeMessage;
 
 public class ContactUtils {
 
+	private static final Logger LOGGER = Logger.getLogger(ContactUtils.class.getName());
+	
 	private static final String fromEmail = "website.artist.rubandt@gmail.com";
 	private static final String fromEmailPw = "#burandtArtist";
 	private static final String recipient = "henning.nobbe@gmail.com";
 	
 	public static void sendContactEmail(String message, String subject){
 		
-		System.out.println("TLSEmail Start");
+		LOGGER.info("TLSEmail Start");
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
 		props.put("mail.smtp.port", "587"); //TLS Port
@@ -55,7 +58,7 @@ public class ContactUtils {
 			msg.setSentDate(new Date());
 
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-			System.out.println("Message is ready");
+			LOGGER.info("Message is ready");
 			Transport.send(msg);
 
 			System.out.println("EMail Sent Successfully!!");
