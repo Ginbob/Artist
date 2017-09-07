@@ -1,17 +1,46 @@
 @CHARSET "UTF-8";
 
-#burger{
-	margin-top: 14px;
+body {
+	padding-top: 50px;
 }
 
-.first-container {
-	margin-top: 50px;
+.navbar-inverse {
+	background: #3A3B32;
 }
 
-.menu-button:hover {
+.navbar-brand {
+	font-size: 14px;
+	box-shadow: 0;
+}
+
+.dropdown-menu {
+	background: #3A3B32;
+}
+
+.dropdown-menu>li>a {
+	color: #9d9d9d;
+}
+
+.dropdown-separator {
+	border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(227, 227, 227, 0.35), rgba(0, 0, 0, 0));
+   padding-top: 3px;
+   padding-bottom: 3px;
+}
+
+.dropdown-menu>li>a:hover {
+   background-image: linear-gradient(to right, rgba(40, 40, 40, 1), rgba(60, 60, 60, 0.8), rgba(40, 40, 40, 1));
+   color: white;
+}
+
+.menu-option {
+	position: relative;
+}
+
+.menu-option:hover {
 	text-decoration: none;
-/* 	border-bottom: 2px solid blue; */
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(160, 160, 160, 0.8), rgba(0, 0, 0, 0));
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(100, 100, 100, 0.8), rgba(0, 0, 0, 0));
 }
 
 .menu-link {
@@ -24,4 +53,11 @@
 
 .jumbotron {
 	margin-bottom: 0;
+}
+
+
+hr.gradient-style {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
 }

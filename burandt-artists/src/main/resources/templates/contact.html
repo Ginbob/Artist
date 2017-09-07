@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <link rel="stylesheet" href="../css/contact/contact.css" th:href="@{/css/contact/contact.css}" type="text/css" />
    <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+   <link rel="stylesheet" href="../css/contact/contact.css" th:href="@{/css/contact/contact.css}" type="text/css" />
    <title>Kontakt</title>
 </head>
 <body>
-   <div th:replace="fragments/general-includes :: header"></div>
+<!--    <div th:replace="fragments/general-includes :: header"></div> -->
+   <nav th:replace="fragments/general-includes :: header"></nav>
    <div class="jumbotron">
-      <div class="container first-container">
+      <div class="container">
          <h3>Haben Sie Interesse, Anregungen oder Fragen?</h3>
          <p>Kontaktieren Sie mich gerne.</p>
       </div>

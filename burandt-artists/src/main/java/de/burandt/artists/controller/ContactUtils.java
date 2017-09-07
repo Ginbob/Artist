@@ -19,6 +19,7 @@ public class ContactUtils {
 	private static final String fromEmail = "website.artist.rubandt@gmail.com";
 	private static final String fromEmailPw = "#burandtArtist";
 	private static final String recipient = "henning.nobbe@gmail.com";
+//	private static final String recipient = "ludwig.burandt@t-online.de";
 	
 	public static void sendContactEmail(String message, String subject){
 		

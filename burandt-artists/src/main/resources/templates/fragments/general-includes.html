@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <th:block th:fragment="general-includes">
-	   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-	   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
-	   <link rel="stylesheet" href="../css/general.css" th:href="@{/css/general.css}" type="text/css" />
-	   <link rel="icon" th:href="@{/icons/Brush-icon.png}"/>
-	   <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
-	   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-   </th:block>
-   <meta charset="UTF-8" />
-   <title>Insert title here</title>
+<th:block th:fragment="general-includes">
+	<link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
+	<link rel="stylesheet"
+		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+		crossorigin="anonymous" />
+	<link rel="icon" th:href="@{/icons/Brush-icon.png}" />
+	<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../css/general.css"
+		th:href="@{/css/general.css}" type="text/css" />
+</th:block>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
 </head>
 <body>
-     <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
-	     <div class="container">
-	        <div class="navbar-header">
-	            <button type="button" id="burger" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-navbar">
-	               <span class="icon-bar"></span> 
-	               <span class="icon-bar"></span>
-	               <span class="icon-bar"></span>
-	            </button>
-	            <a class="navbar-brand menu-link" href="/">
-	                 <button type="button" class="btn btn-link btn-md menu-button">
-                       <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Start
-                    </button>
-               </a>
-	        </div>
-	        <div class="navbar-collapse collapse" id="collapsable-navbar">
-	           <ul class="nav navbar-nav">
-	              <li class="header-li"><a class="menu-link" href="/about" th:href="@{/about}">
-	                 <button type="button" class="btn btn-link btn-md menu-button">
-	                    Über mich
-	                 </button>
-	              </a></li>
-	           </ul>
-	           <ul class="nav navbar-nav">
-                 <li class="header-li"><a class="menu-link" href="/painting" th:href="@{/painting}">
-                    <button type="button" class="btn btn-link btn-md menu-button">
-                      Malerei
-                    </button>
-                 </a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                 <li class="header-li"><a class="menu-link" href="/contact" th:href="@{/contact}">
-                     <button type="button" class="btn btn-link btn-md menu-button">
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt
-                     </button>
-                 </a></li>
-              </ul>
-	        </div>
-	     </div>
-     </div>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" th:fragment="header">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-navbar" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand menu-option" th:href="@{/index}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><strong> Start</strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="collapsable-navbar">
+      <ul class="nav navbar-nav">
+        <li class="menu-option"><a th:href="@{/about}">Über mich</a></li>
+        <li class="dropdown menu-option">
+          <a th:href="@{/painting}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Malerei <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="menu-option"><a th:href="@{/painting/representational}">Gegenständliche Malerei</a></li>
+            <li role="separator" class="dropdown-separator"></li>
+            <li class="menu-option"><a th:href="@{/painting/abstract}">Abstrakte Malerei</a></li>
+          </ul>
+        </li>
+        <li class="menu-option"><a th:href="@{/exhibitions}"> Ausstellungen</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="menu-option"><a th:href="@{/contact}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 </body>
 </html>

@@ -25,9 +25,21 @@ public class ArtistController {
         return model;
     }
     
-    @GetMapping(path="/painting")
-    public ModelAndView painting() {
-        ModelAndView model = new ModelAndView("painting");
+    @GetMapping(path="/painting/representational")
+    public ModelAndView paintingRepresentational() {
+        ModelAndView model = new ModelAndView("painting/representational");
+        return model;
+    }
+    
+    @GetMapping(path="/painting/abstract")
+    public ModelAndView paintingAbstract() {
+        ModelAndView model = new ModelAndView("painting/abstract");
+        return model;
+    }
+    
+    @GetMapping(path="/exhibitions")
+    public ModelAndView exhibitions() {
+        ModelAndView model = new ModelAndView("exhibitions");
         return model;
     }
     

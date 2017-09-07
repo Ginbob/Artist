@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+	<th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+	<link rel="stylesheet" href="../css/index.css" th:href="@{/css/index.css}" type="text/css" />
 	<title>Burandt - Kunst</title>
 </head>
 <body>
-   <div th:replace="fragments/general-includes :: header"></div>
+	<nav th:replace="fragments/general-includes :: header"></nav>
 	<div class="jumbotron">
-      <div class="container first-container">
-	      <h3>Herzlich Willkommen</h3>
-	      <p>auf Louis heftiger Boss-Page</p>
-	   </div>
-   </div>
+		<div class="container">
+			<h3>Herzlich Willkommen</h3>
+			<p>auf Louis heftiger Boss-Page</p>
+			<hr class="gradient-style-left" />
+			<div class="thumbnail">
+				<img src="https://www.noz-cdn.de/media/2013/08/31/em-bringt-abstrakter-kunst-em-ernsthaftigkeit-b_full.jpg" />
+			</div>
+		</div>
+	</div>
 </body>
 </html>
