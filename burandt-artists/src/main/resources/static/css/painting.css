@@ -1,0 +1,11 @@
+.painting-container {
+	min-height: 500px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+p.description {
+	font-size: 13px;
+}
