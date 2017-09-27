@@ -2,6 +2,8 @@ package de.burandt.artists.controller;
 
 import java.util.List;
 
+import de.burandt.artists.domain.Exhibition;
+import de.burandt.artists.repository.ExhibitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ public class ArtistController {
 	
 	@Autowired
 	private PaintingRepository paintingRepo;
+    @Autowired
+    private ExhibitionRepository exhibitionRepo;
 	
     @GetMapping(path= {"", "index"})
     public ModelAndView index(){
@@ -54,8 +58,10 @@ public class ArtistController {
     
     @GetMapping(path="/exhibitions")
     public ModelAndView exhibitions() {
+        List<Exhibition> allExhibitions = exhibitionRepo.findAll();
+
         ModelAndView model = new ModelAndView("exhibitions");
+        model.addObject("allExhibitions", allExhibitions);
         return model;
     }
-    
 }
