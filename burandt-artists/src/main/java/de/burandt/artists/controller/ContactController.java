@@ -1,5 +1,6 @@
 package de.burandt.artists.controller;
 
+import de.burandt.artists.controller.util.ContactUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,4 +1,4 @@
-package de.burandt.artists.controller;
+package de.burandt.artists.controller.util;
 
 import java.util.Date;
 import java.util.Properties;

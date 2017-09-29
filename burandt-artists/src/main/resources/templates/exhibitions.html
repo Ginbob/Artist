@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
-   <link rel="stylesheet" href="../css/painting.css" th:href="@{/css/painting.css}" type="text/css" />
-   <title>Ausstellungen</title>
+    <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+    <link rel="stylesheet" href="../css/painting.css" th:href="@{/css/painting.css}" type="text/css"/>
+    <title>Ausstellungen</title>
 </head>
 <body>
-   <nav th:replace="fragments/general-includes :: header"></nav>
-   <div class="jumbotron">
-      <div class="container">
-         <h2>Vergangene Austellungen</h2>
-         <hr class="gradient-style-left" />
-      </div>
-      <div class="container">
-         <div class="row">
+<nav th:replace="fragments/general-includes :: header"></nav>
+<div class="jumbotron">
+
+    <div class="container">
+        <h2>Vergangene Austellungen</h2>
+        <hr class="gradient-style-left"/>
+    </div>
+
+    <div class="container">
+        <div class="row">
             <th:block th:each="exhibition : ${allExhibitions}">
                 <div class="container">
                     <div class="col-xs-2"><p th:text="${exhibition.exhibitionDate}">Austellungsdatum</p></div>
                     <div class="col-xs-10"><p th:text="${exhibition.description}">Beschreibung</p></div>
                 </div>
             </th:block>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
