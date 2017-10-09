@@ -1,7 +1,8 @@
 package de.burandt.artists.repository;
 
-import de.burandt.artists.domain.Exhibition;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import de.burandt.artists.domain.exhibition.Exhibition;
 
 import java.util.List;
 

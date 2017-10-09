@@ -2,14 +2,15 @@ package de.burandt.artists.controller;
 
 import java.util.List;
 
-import de.burandt.artists.domain.Exhibition;
+import de.burandt.artists.domain.exhibition.Exhibition;
+import de.burandt.artists.domain.painting.Painting;
 import de.burandt.artists.repository.ExhibitionRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.burandt.artists.domain.Painting;
 import de.burandt.artists.repository.PaintingRepository;
 
 @Controller

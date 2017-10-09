@@ -1,4 +1,4 @@
-package de.burandt.artists.domain;
+package de.burandt.artists.domain.painting;
 
 public enum Hauptkategorie {
 	REPRESENTATIONAL("gegenständlich"), ABSTRACT("nicht-gegenständlich");
