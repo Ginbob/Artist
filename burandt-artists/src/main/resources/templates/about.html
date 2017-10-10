@@ -2,30 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
-    <link rel="stylesheet" href="../css/about.css" th:href="@{/css/about.css}" type="text/css"/>
     <title>Über mich</title>
 </head>
 <body>
-<nav th:replace="fragments/general-includes :: header"></nav>
-<div class="jumbotron">
+    <nav th:replace="fragments/general-includes :: header"></nav>
+    <div class="jumbotron">
 
-    <div class="container">
-        <h2>Ausbildung und Tätigkeit</h2>
-        <hr class="gradient-style-left"/>
-    </div>
-
-    <div class="row timetable">
         <div class="container">
-            <div class="col-xs-2"><p>1988-90</p></div>
-            <div class="col-xs-10"><p>Zeichenstudium, Westf.Wilhelmsuniversität Münster</p></div>
-            <div class="col-xs-2"><p>1989-95</p></div>
-            <div class="col-xs-10"><p>Magisterstudium WS 89/90 - 3.7.95 Kunst/ Kunstpädagogik und Philosophie</p></div>
-            <div class="col-xs-2"><p>1994</p></div>
-            <div class="col-xs-10"><p>Förderpreis der Universitätsgesellschaft Osnabrück für Malerei auf dem Gebiet der
-                nicht gegenständlichen Malerei
-            </p></div>
+            <h2>Ausbildung und Tätigkeit</h2>
+            <hr class="gradient-style-left"/>
+        </div>
+
+        <div class="container">
+            <p class="row">
+                <p>
+                <div class="col-xs-2">1988-90</div>
+                <div class="col-xs-10">Zeichenstudium, Westf.Wilhelmsuniversität Münster</p></div>
+                <div class="col-xs-2">1989-95</div>
+                <div class="col-xs-10">Magisterstudium WS 89/90 - 3.7.95 Kunst/ Kunstpädagogik und Philosophie</p></div>
+                <div class="col-xs-2">1994</div>
+                <div class="col-xs-10">Förderpreis der Universitätsgesellschaft Osnabrück für Malerei auf dem Gebiet der
+                    nicht gegenständlichen Malerei
+                </div>
+
+            </p>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
