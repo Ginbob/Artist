@@ -3,6 +3,10 @@
 */RemoteSystemsTempFiles/*
 *Spielwiese.java
 *.DS_Store
+.gitconfig
+.metadata/*
+.recommenders/*
+LudwigBurandt-Dokumentation-chronologisch-20.10.14.pdf
 
 ### STS ###
 .apt_generated
