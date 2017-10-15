@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+   <link rel="stylesheet" href="../css/about.css" th:href="@{/css/blog.css}" type="text/css" />
+   <title>Blog</title>
+</head>
+<body>
+   <nav th:replace="fragments/general-includes :: header"></nav>
+   <div class="blog-content">
+	   <div class="jumbotron">
+	      <h1 align="center">Blog</h1>
+	   </div>
+	   <th:block th:each="blogPost : ${blogPosts}">
+		   <div class="jumbotron">
+		     <div class="container">
+		         <label class="date-label" th:text="${#dates.format(blogPost.postDate, 'dd.MM.yyyy')}">Date</label>
+			      <h4 th:text="${blogPost.headline}">Headline</h4>
+			      <p th:text="${blogPost.getPostTextAsString()}"></p>
+		     </div>
+		   </div>
+	   </th:block>
+   </div>
+</body>
+</html>

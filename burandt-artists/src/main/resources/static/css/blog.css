@@ -1,0 +1,10 @@
+.blog-content .jumbotron:NTH-OF-TYPE(even) {
+	background: white;
+}
+
+.date-label {
+	color: #337ab7;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+   font-size: 14px;
+   font-weight: 400;
+}
