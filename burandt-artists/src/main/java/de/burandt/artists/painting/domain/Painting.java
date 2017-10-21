@@ -1,4 +1,4 @@
-package de.burandt.artists.domain.painting;
+package de.burandt.artists.painting.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
