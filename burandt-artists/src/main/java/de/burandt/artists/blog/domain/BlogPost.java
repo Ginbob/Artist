@@ -1,4 +1,4 @@
-package de.burandt.artists.domain.blog;
+package de.burandt.artists.blog.domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
