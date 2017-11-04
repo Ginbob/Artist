@@ -1,7 +1,8 @@
 package de.burandt.artists.painting.domain;
 
 public enum Hauptkategorie {
-	REPRESENTATIONAL("gegenständlich"), ABSTRACT("nicht-gegenständlich");
+	REPRESENTATIONAL("representational"),
+	ABSTRACT("abstract");
 	
 	private String hauptkategorie;
 	
