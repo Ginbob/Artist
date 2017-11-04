@@ -18,7 +18,7 @@
                <div class="col-sm-6 col-lg-4">
 	               <div class="painting-container">
 	                  <div class="thumbnail">
-	                     <img th:src="'/images/representational/' + ${painting.datei}" />
+	                     <img th:src="@{'data:image/png;base64,'+${painting.generateBase64Image()}}" />
 	                  </div>
 	                  <h5 th:text="${painting.name}">Bildname</h5>
 	                  <p class="description" th:text="${painting.hoehe} + 'cm x ' + ${painting.breite} + 'cm, ' 

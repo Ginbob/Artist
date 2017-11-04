@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 public class Painting {
@@ -19,6 +22,9 @@ public class Painting {
 	private String datei;
 	private String hauptkategorie;
 	private String unterkategorie;
+	
+	@Transient
+	private byte[] imageByte;
 
 	public Integer getId() {
 		return id;
@@ -91,5 +97,17 @@ public class Painting {
 	public void setUnterkategorie(String unterkategorie) {
 		this.unterkategorie = unterkategorie;
 	}
+
+	public byte[] getImageByte() {
+		return imageByte;
+	}
+
+	public void setImageByte(byte[] imageByte) {
+		this.imageByte = imageByte;
+	}
 	
+	public String generateBase64Image()
+	{
+	    return Base64.encodeBase64String(this.imageByte);
+	}
 }
