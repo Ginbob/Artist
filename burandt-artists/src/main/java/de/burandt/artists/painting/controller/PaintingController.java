@@ -20,14 +20,20 @@ public class PaintingController {
     public ModelAndView paintingRepresentational() {
     	List<Painting> representationalPaintings = paintingService.findAllRepresentationalPaintings();
     	
-        ModelAndView model = new ModelAndView("painting/representational");
+        ModelAndView model = new ModelAndView("painting/representational/representational");
         model.addObject("paintings", representationalPaintings);
         return model;
     }
     
     @GetMapping(path="/painting/abstract")
     public ModelAndView paintingAbstract() {
-        ModelAndView model = new ModelAndView("painting/abstract");
+        ModelAndView model = new ModelAndView("painting/abstract/abstract");
+        return model;
+    }
+    
+    @GetMapping(path="/painting/abstract/edit")
+    public ModelAndView paintingAbstractEdit() {
+        ModelAndView model = new ModelAndView("painting/abstract/edit");
         return model;
     }
 }
