@@ -1,27 +1,28 @@
 package de.burandt.artists.painting.util;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
-import javax.imageio.ImageIO;
 
-import de.burandt.artists.painting.domain.Painting;
+import de.burandt.artists.painting.domain.Hauptkategorie;
+import de.burandt.artists.painting.exception.CannotResolvePaintingException;
 
 public class PaintingUtils {
 
 	public static final String PATH_TO_REPRESENTATIONAL = "/Users/henning/Pictures/representational/";
 	public static final String PATH_TO_ABSTRACT = "/Users/henning/Pictures/abstract/";
 	
-	public static byte[] mapPaintingToByteArray(Painting painting) throws IOException {
-    	File imageFile = new File(PATH_TO_REPRESENTATIONAL + painting.getDatei());
-    	BufferedImage image = ImageIO.read(imageFile);;
-    	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    	ImageIO.write(image, "png", outputStream);
-    	outputStream.flush();
-    	byte [] imageByteArray = outputStream.toByteArray();
-    	outputStream.close();
-    	return imageByteArray;
-    }
+	public static byte[] mapFileNameToByteArray(Hauptkategorie kategorie, String filename) throws IOException, CannotResolvePaintingException {
+		File image = null;
+		if (kategorie.equals(Hauptkategorie.ABSTRACT)) {
+			image = new File(PATH_TO_ABSTRACT + filename);
+		} else if (kategorie.equals(Hauptkategorie.REPRESENTATIONAL)) {
+			image = new File(PATH_TO_REPRESENTATIONAL + filename);
+		}
+		if(image == null) {
+			throw new CannotResolvePaintingException("Invalid Category or filename");
+		}
+		return Files.readAllBytes(image.toPath());
+	}
 }

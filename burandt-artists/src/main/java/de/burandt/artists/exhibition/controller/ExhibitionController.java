@@ -20,7 +20,7 @@ public class ExhibitionController {
     public ModelAndView exhibitions() {
         List<Exhibition> allExhibitions = exhibitionRepo.findAll();
 
-        ModelAndView model = new ModelAndView("exhibitions");
+        ModelAndView model = new ModelAndView("exhibition/exhibition");
         model.addObject("allExhibitions", allExhibitions);
         return model;
     }

@@ -20,7 +20,7 @@ public class BlogController {
     public ModelAndView blog() {
     	List<BlogPost> blogPosts = blogPostRepo.findAll();
     	
-    	ModelAndView model = new ModelAndView("blog");
+    	ModelAndView model = new ModelAndView("blog/blog");
     	model.addObject("blogPosts", blogPosts);
     	return model;
     }

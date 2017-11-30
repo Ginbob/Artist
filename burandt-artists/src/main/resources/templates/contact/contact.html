@@ -14,7 +14,7 @@
          <p>Kontaktieren Sie mich gerne.</p>
       </div>
 	   <div class="container">
-	      <form class="form-group" action="/sendMessage" method="Post">
+	      <form class="form-group" th:action="${#mvc.url('sendMessage').build()}" method="Post">
 	         <label for="contact-email">E-Mail:</label>
 	         <input type="email" class="form-control contact-input" id="contact-email" name="c-email" required="required" placeholder="E-Mail-Adresse"></input>
 	         <label for="contact-reason">Ihr Anliegen:</label>

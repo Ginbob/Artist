@@ -13,15 +13,15 @@ public class ContactController {
 
     @GetMapping(path="/contact")
     public ModelAndView contact() {
-        ModelAndView model = new ModelAndView("contact");
+        ModelAndView model = new ModelAndView("contact/contact");
         return model;
     }
 	
-	@PostMapping(path="/sendMessage")
+	@PostMapping(path="/sendMessage", name="sendMessage")
 	public ModelAndView sendMessageFromContact(@RequestParam(name="c-email") final String email,
 			@RequestParam(name="c-reason") final String contactReason,
 			@RequestParam(name="c-message") final String contactMessage) {
-		ModelAndView model = new ModelAndView("messageSent");
+		ModelAndView model = new ModelAndView("contact/messageSent");
 		
 		StringBuffer msg = new StringBuffer(email).append(" schrieb folgende Nachricht über das Kontaktformular:");
 		msg.append("\n\n");
