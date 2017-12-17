@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
    <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+   <link rel="stylesheet" href="../css/exhibition.css"
+      th:href="@{/css/exhibition.css}" type="text/css" />
    <title>Ausstellungen</title>
 </head>
 <body>
@@ -15,8 +17,8 @@
          <div class="row">
             <th:block th:each="exhibition : ${allExhibitions}">
                 <div class="container">
-                    <div class="col-xs-2"><p th:text="${exhibition.exhibitionDate}">Austellungsdatum</p></div>
-                    <div class="col-xs-10"><p th:text="${exhibition.description}">Beschreibung</p></div>
+                    <div class="col-xs-2"><p class="exhibition-text" th:text="${exhibition.exhibitionDate}">Austellungsdatum</p></div>
+                    <div class="col-xs-10"><p class="exhibition-text" th:text="${exhibition.description}">Beschreibung</p></div>
                 </div>
             </th:block>
          </div>

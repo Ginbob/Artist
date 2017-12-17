@@ -8,3 +8,17 @@
    font-size: 14px;
    font-weight: 400;
 }
+
+.blogpost_text {
+	width: 80%;
+   height: 40%;
+   min-height: 170px;
+}
+
+.blogpost_header {
+   width: 50%;
+}
+
+.blog-input {
+	margin-top: 15px;
+}

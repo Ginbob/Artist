@@ -16,7 +16,7 @@
 		     <div class="container">
 		         <label class="date-label" th:text="${#dates.format(blogPost.postDate, 'dd.MM.yyyy')}">Date</label>
 			      <h4 th:text="${blogPost.headline}">Headline</h4>
-			      <p th:text="${blogPost.getPostTextAsString()}"></p>
+			      <p th:text="${blogPost.postText}"></p>
 		     </div>
 		   </div>
 	   </th:block>
