@@ -26,6 +26,19 @@ public class Painting {
 	@Transient
 	private byte[] imageByte;
 
+	public Painting() {}
+	
+	public Painting(String name, Integer entstehungsjahr, Integer hoehe, Integer breite, String technik, String datei, String hauptkategorie, String unterkategorie) {
+		this.name = name;
+		this.entstehungsjahr = entstehungsjahr;
+		this.hoehe = hoehe;
+		this.breite = breite;
+		this.technik = technik;
+		this.datei = datei;
+		this.hauptkategorie = hauptkategorie;
+		this.unterkategorie = unterkategorie;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

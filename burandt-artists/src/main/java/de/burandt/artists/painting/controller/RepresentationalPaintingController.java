@@ -2,12 +2,10 @@ package de.burandt.artists.painting.controller;
 
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import de.burandt.artists.Util.StringInputUtils;
+import de.burandt.artists.painting.domain.Hauptkategorie;
 import de.burandt.artists.painting.domain.Painting;
 import de.burandt.artists.painting.service.PaintingService;
 
@@ -49,11 +47,9 @@ public class RepresentationalPaintingController {
     		@RequestParam(name="height") String height,
     		@RequestParam(name="width") String width,
     		@RequestParam(name="year") String year,
-    		@RequestParam(name="file") MultipartFile paintingFile,
-    		Model model
+    		@RequestParam(name="file") MultipartFile paintingFile
     		) {
-    	StringInputUtils.eraseLeadingComma(paintingname, technique, height, width, year);
-    	
+    	paintingService.saveNewPainting(paintingname, technique, height, width, year, paintingFile, Hauptkategorie.REPRESENTATIONAL, null);
     	return new ModelAndView(new RedirectView(fromMappingName("representational").build()));
     	
     }

@@ -10,7 +10,7 @@
    <div class="jumbotron">
       <div class="container">
          <h3>Neues Bild in der Rubrik gegenständliche Malerei erfassen:</h3>
-         <form class="form-group" method="post" th:action="${#mvc.url('save_new_representational').build()}" enctype="multipart/form-data">
+         <form class="form-group" method="post" th:action="@{/painting/representational/new}" enctype="multipart/form-data">
             <input type="text" class="form-control" id="paintingname" name="paintingname" required="required" placeholder="Bildname"/>
             <input type="text" class="form-control" id="technique" name="technique" required="required" placeholder="Technik"/>
             <input type="number" class="form-control" id="height" name="height" required="required" placeholder="Höhe"/>
