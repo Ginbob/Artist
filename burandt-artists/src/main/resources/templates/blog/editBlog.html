@@ -11,12 +11,11 @@
       <div class="jumbotron">
          <h1 align="center">Blog - Bearbeitungsmodus</h1>
       </div>
-      <form method="post" th:action="${#mvc.url('save_blogposts').build()}" th:object="${wrapper}" >
+      <form method="post" th:action="@{/blog/edit}" th:object="${wrapper}" >
       <th:block th:each="currentBlogPost, stat : *{blogPosts}">
          <div class="jumbotron">
            <div class="container">
-               <input type="hidden" th:value="${currentBlogPost.postDate}" 
-                                    th:field="*{blogPosts[__${stat.index}__].postDate}"/>
+               <input type="hidden" th:value="${currentBlogPost.postDate}" th:field="*{blogPosts[__${stat.index}__].postDate}"/>
                <input type="hidden" th:value="${currentBlogPost.id}" th:field="*{blogPosts[__${stat.index}__].id}"/>
                <label>Überschrift: </label>
                <input class="blogpost_header" type="text" th:value="${currentBlogPost.headline}" 

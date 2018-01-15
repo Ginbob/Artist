@@ -1,5 +1,17 @@
 .painting-container {
 	min-height: 500px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.painting-container-edit {
+	min-height: 600px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.painting-container p {
+	font-size: 1.3em;
 }
 
 h5 {
@@ -8,4 +20,13 @@ h5 {
 
 p.description {
 	font-size: 13px;
+}
+
+.painting-frame {
+    border-style: solid;
+}
+
+.form-control {
+    margin-bottom: 15px;
+    max-width: 500px;
 }

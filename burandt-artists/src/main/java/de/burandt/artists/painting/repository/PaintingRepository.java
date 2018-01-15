@@ -8,4 +8,6 @@ import de.burandt.artists.painting.domain.Painting;
 
 public interface PaintingRepository extends JpaRepository<Painting, Integer> {
 	List<Painting> findByHauptkategorieOrderByEntstehungsjahr(String hauptkategorie);
+
+    List<Painting> findByHauptkategorieAndMarkedAsDeletedOrderByEntstehungsjahr(String hauptkategorie, boolean b);
 }

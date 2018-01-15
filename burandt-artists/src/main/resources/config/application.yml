@@ -6,3 +6,7 @@ spring:
     url: jdbc:mysql://localhost:3306/artist
     username: root
     password: geheim01
+  http:
+    multipart:
+        maxFileSize: 10Mb
+        maxRequestSize: 30Mb

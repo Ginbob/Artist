@@ -25,9 +25,13 @@ public class PaintingService {
 	@Autowired
 	private PaintingRepository paintingRepository;
 	
-	public List<Painting> findAllRepresentationalPaintings() {
-		return paintingRepository.findByHauptkategorieOrderByEntstehungsjahr(REPRESENTATIONAL.getHauptkategorie());
+	public List<Painting> findAllPaintingsByCategory(Hauptkategorie hauptkategorie) {
+		return paintingRepository.findByHauptkategorieOrderByEntstehungsjahr(hauptkategorie.getHauptkategorie());
 	}
+
+	public List<Painting> findAllPaintingsByCategoryForView(Hauptkategorie hauptkategorie) {
+	    return paintingRepository.findByHauptkategorieAndMarkedAsDeletedOrderByEntstehungsjahr(hauptkategorie.getHauptkategorie(), false);
+    }
 
 	public boolean saveNewPainting(String paintingname, 
 								   String technique, 
@@ -35,19 +39,29 @@ public class PaintingService {
 								   String width, 
 								   String year, 
 								   MultipartFile paintingFile, 
-								   Hauptkategorie hauptkategorie, 
+								   String hauptkategorie,
 								   String unterkategorie) {
 		Integer heightValue = Integer.valueOf(height);
 		Integer widthValue = Integer.valueOf(width);
 		Integer yearValue = Integer.valueOf(year);
-		Painting newPainting = new Painting(paintingname, yearValue, heightValue, widthValue, technique, paintingFile.getOriginalFilename(), hauptkategorie.getHauptkategorie(), unterkategorie);
+		Hauptkategorie kategorie = Hauptkategorie.valueOf(hauptkategorie.toUpperCase());
+		Painting newPainting = new Painting(paintingname, yearValue, heightValue, widthValue, technique, paintingFile.getOriginalFilename(), hauptkategorie, unterkategorie, false);
 		try {
-			switch (hauptkategorie) {
+			switch (kategorie) {
 			case REPRESENTATIONAL: 
 				paintingFile.transferTo(new File(PaintingUtils.PATH_TO_REPRESENTATIONAL + paintingFile.getOriginalFilename())); 
 				break;
 			case ABSTRACT:
 				paintingFile.transferTo(new File(PaintingUtils.PATH_TO_ABSTRACT + paintingFile.getOriginalFilename()));
+				break;
+			case CURRENT:
+				paintingFile.transferTo(new File(PaintingUtils.PATH_TO_CURRENT + paintingFile.getOriginalFilename()));
+				break;
+			case DRAWING:
+				paintingFile.transferTo(new File(PaintingUtils.PATH_TO_DRAWING + paintingFile.getOriginalFilename()));
+				break;
+			case COLLAGE:
+				paintingFile.transferTo(new File(PaintingUtils.PATH_TO_COLLAGE + paintingFile.getOriginalFilename()));
 				break;
 			default:
 				LOG.warn("Ungültige oder noch nicht im Service eingepflegte Hauptkategorie: " + hauptkategorie);
@@ -61,5 +75,8 @@ public class PaintingService {
 		paintingRepository.save(newPainting);
 		return true;
 	}
-	
+
+    public void updatePaintings(List<Painting> paintings) {
+	    paintingRepository.save(paintings);
+    }
 }

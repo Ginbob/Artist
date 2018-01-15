@@ -1,5 +1,6 @@
 package de.burandt.artists.blog.controller;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -35,43 +36,58 @@ public class BlogController {
 	private BlogPostService blogPostService;
 	
 	@GetMapping(name = "blogs", path="")
-    public ModelAndView blog() {
+    public ModelAndView blog(Principal principal) {
     	List<BlogPost> blogPosts = blogPostRepo.findByMarkedAsDeletedOrderByIdDesc(false);
     	
     	ModelAndView model = new ModelAndView("blog/blog");
     	model.addObject("blogPosts", blogPosts);
+		if (principal != null) {
+			model.addObject("loggedIn", true);
+		}
     	return model;
     }
 	
 	@GetMapping(path = "/edit")
-	public ModelAndView editBlog() {
-		return new ModelAndView("blog/editBlog")
-			.addAllObjects(
-				ImmutableMap.of(
-					"wrapper", new BlogPostWrapper(blogPostRepo.findAllByOrderByIdDesc())
-				));
+	public ModelAndView editBlog(Principal principal) {
+		ModelAndView model = new ModelAndView("blog/editBlog");
+				model.addObject("wrapper", new BlogPostWrapper(blogPostRepo.findAllByOrderByIdDesc()));
+		if (principal != null) {
+			model.addObject("loggedIn", true);
+		}
+		return model;
 	}
 	
 	@PostMapping(name = "save_blogposts", path = "/edit")
-	public ModelAndView saveBlogPosts(@ModelAttribute BlogPostWrapper blogPostWrapper) {
+	public ModelAndView saveBlogPosts(@ModelAttribute BlogPostWrapper blogPostWrapper,
+									  Principal principal) {
 		blogPostService.updateBlogPosts(blogPostWrapper.getBlogPosts());
-		return new ModelAndView(new RedirectView(fromMappingName("blogs").build()));
+		ModelAndView model = new ModelAndView(new RedirectView(fromMappingName("blogs").build()));
+		if (principal != null) {
+			model.addObject("loggedIn", true);
+		}
+		return model;
 	}
 	
 	@GetMapping(name = "new_blog", path="/new")
-	public ModelAndView createBlogPost() {
-		return new ModelAndView("blog/newBlog");
+	public ModelAndView createBlogPost(Principal principal) {
+		ModelAndView model = new ModelAndView("blog/newBlog");
+		if (principal != null) {
+			model.addObject("loggedIn", true);
+		}
+		return model;
 	}
 	
 	@PostMapping(name = "create_blog_post", path = "/new")
 	public ModelAndView createNewBlogPost(@RequestParam(name="title") String title, 
-										  @RequestParam(name="blog-post-text") String content) {
-		StringInputUtils.eraseLeadingComma(title);
-		StringInputUtils.eraseLeadingComma(content);
-		
+										  @RequestParam(name="blog-post-text") String content,
+										  Principal principal) {
 		BlogPost newBlogPost = new BlogPost(new Date(), title, content);
 		blogPostRepo.save(newBlogPost);
-		return new ModelAndView(new RedirectView(fromMappingName("blogs").build()));
+		ModelAndView model = new ModelAndView(new RedirectView(fromMappingName("blogs").build()));
+		if (principal != null) {
+			model.addObject("loggedIn", true);
+		}
+		return model;
 	}
 
 }
