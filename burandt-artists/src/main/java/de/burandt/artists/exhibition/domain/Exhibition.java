@@ -22,7 +22,7 @@ public class Exhibition {
 	private String description;
 	private boolean currentFuture;
 	private String link;
-	@OneToMany(mappedBy = "exhibition", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exhibition", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ExhibitionPainting> paintings;
 
     public Exhibition() {

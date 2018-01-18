@@ -39,8 +39,8 @@ public class ExhibitionController {
     @GetMapping(path="", name="exhibition")
     public ModelAndView exhibitions(Principal principal) {
         updateExhibitions();
-        List<PastExhibitionViewModel> pastExhibitions = getPastExhibitionViewModels(exhibitionRepo.findAllByCurrentFuture(false));
-        List<CurrentOrFutureExhibitionViewModel> currentOrFutureExhibitions = convertToViewModels(exhibitionRepo.findAllByCurrentFuture(true));
+        List<PastExhibitionViewModel> pastExhibitions = getPastExhibitionViewModels(exhibitionRepo.findAllByCurrentFutureOrderByStartDateAsc(false));
+        List<CurrentOrFutureExhibitionViewModel> currentOrFutureExhibitions = convertToViewModels(exhibitionRepo.findAllByCurrentFutureOrderByStartDateAsc(true));
 
         ModelAndView model = new ModelAndView("exhibition/exhibition")
                 .addObject("pastExhibitions", pastExhibitions)
@@ -68,7 +68,7 @@ public class ExhibitionController {
      * checks whether or not current or future exhibitions should be flagged as past exhibitions
      */
     private void updateExhibitions() {
-        List<Exhibition> currentOrFutureExhibitions = exhibitionRepo.findAllByCurrentFuture(true);
+        List<Exhibition> currentOrFutureExhibitions = exhibitionRepo.findAllByCurrentFutureOrderByStartDateAsc(true);
         List<Exhibition> exhibitionsToBeUpdated = new ArrayList<>();
         currentOrFutureExhibitions.forEach(exhibition -> {
             if(Date.from(Instant.now()).after(exhibition.getEndDate())) {
@@ -187,5 +187,12 @@ public class ExhibitionController {
         // ToDo: Arbeite mit flash messages irgendwann
         exhibitionService.saveNewPaintingsForExhibition(exhibitionId, uploadForm.getFiles());
         return new ModelAndView(new RedirectView(fromMappingName("edit_exhibitions").arg(0, exhibitionId).arg(1, principal).build()));
+    }
+
+    @PostMapping(path="/delete/{id}", name="delete_exhibition")
+    public ModelAndView deleteExhibition(@PathVariable(value = "id") Integer id,
+                                         Principal principal) {
+        exhibitionRepo.delete(id);
+        return new ModelAndView(new RedirectView(fromMappingName("exhibition").arg(0, principal).build()));
     }
 }

@@ -13,8 +13,8 @@ public class Painting {
 	private Integer id;
 	private String name;
 	private Integer entstehungsjahr;
-	private Integer hoehe;
-	private Integer breite;
+	private Double hoehe;
+	private Double breite;
 	private String technik;
 	private String datei;
 	private String hauptkategorie;
@@ -23,7 +23,7 @@ public class Painting {
 
 	public Painting() {}
 	
-	public Painting(String name, Integer entstehungsjahr, Integer hoehe, Integer breite, String technik, String datei, String hauptkategorie, String unterkategorie, boolean markedAsDeleted) {
+	public Painting(String name, Integer entstehungsjahr, Double hoehe, Double breite, String technik, String datei, String hauptkategorie, String unterkategorie, boolean markedAsDeleted) {
 		this.name = name;
 		this.entstehungsjahr = entstehungsjahr;
 		this.hoehe = hoehe;
@@ -59,19 +59,19 @@ public class Painting {
 		this.entstehungsjahr = entstehungsjahr;
 	}
 
-	public Integer getHoehe() {
+	public Double getHoehe() {
 		return hoehe;
 	}
 
-	public void setHoehe(Integer hoehe) {
+	public void setHoehe(Double hoehe) {
 		this.hoehe = hoehe;
 	}
 
-	public Integer getBreite() {
+	public Double getBreite() {
 		return breite;
 	}
 
-	public void setBreite(Integer breite) {
+	public void setBreite(Double breite) {
 		this.breite = breite;
 	}
 

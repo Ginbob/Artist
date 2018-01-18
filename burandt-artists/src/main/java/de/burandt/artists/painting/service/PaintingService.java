@@ -41,8 +41,8 @@ public class PaintingService {
 								   MultipartFile paintingFile, 
 								   String hauptkategorie,
 								   String unterkategorie) {
-		Integer heightValue = Integer.valueOf(height);
-		Integer widthValue = Integer.valueOf(width);
+		Double heightValue = Double.valueOf(height);
+		Double widthValue = Double.valueOf(width);
 		Integer yearValue = Integer.valueOf(year);
 		Hauptkategorie kategorie = Hauptkategorie.valueOf(hauptkategorie.toUpperCase());
 		Painting newPainting = new Painting(paintingname, yearValue, heightValue, widthValue, technique, paintingFile.getOriginalFilename(), hauptkategorie, unterkategorie, false);

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ExhibitionRepository extends JpaRepository<Exhibition, Integer> {
 
-    List<Exhibition> findAllByCurrentFuture(boolean currentFuture);
+    List<Exhibition> findAllByCurrentFutureOrderByStartDateAsc(boolean currentFuture);
 }

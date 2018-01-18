@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+    <link rel="stylesheet" href="../css/exhibition.css"
+          th:href="@{/css/exhibition.css}" type="text/css" />
+    <title>Ausstellungen</title>
+</head>
+<body>
+<nav th:replace="fragments/general-includes :: header"></nav>
+    <div class="jumbotron">
+        <div class="container">
+            <div th:if="${loggedIn}">
+                <a th:href="@{/exhibitions/new}" class="btn btn-primary"><i class="fa fa-plus"></i> Neue Ausstellung erfassen</a>
+                <a th:href="@{/exhibitions/__${exhibition.id}__/edit}" class="btn btn-primary"><i class="fa fa-pencil"></i> Ausstellung bearbeiten</a>
+            </div>
+            <h2 th:text="${exhibition.title}"></h2>
+            <hr class="gradient-style-left" />
+        </div>
+        <div class="container">
+            <h4>Beginn:</h4>
+            <p th:text="${#dates.format(exhibition.startDate, 'dd.MM.yyyy')}"></p>
+            <h4>Ende:</h4>
+            <p th:text="${#dates.format(exhibition.endDate, 'dd.MM.yyyy')}"></p>
+        </div>
+        <div class="container">
+            <h4>Beispiele von Werken in der Ausstellung:</h4>
+            <div class="row">
+                <th:block th:each="painting : ${exhibition.paintings}">
+                    <div class="col-sm-6 col-lg-4">
+                        <img class="detail-painting" th:attr="src=@{/art/exhibition/image/{filename}(filename=${painting.datei})}" />
+                    </div>
+                </th:block>
+            </div>
+        </div>
+        <div class="container">
+            <h4>Beschreibung:</h4>
+            <p th:text="${exhibition.description}"></p>
+            <br/>
+            <a th:if="${exhibition.link != null}" th:href="${exhibition.link}">Weitere Informationen</a>
+        </div>
+    </div>
+</body>
+</html>
