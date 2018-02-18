@@ -44,4 +44,24 @@ public class ExhibitionPainting {
     public void setExhibition(Exhibition exhibition) {
         this.exhibition = exhibition;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExhibitionPainting)) return false;
+
+        ExhibitionPainting that = (ExhibitionPainting) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (datei != null ? !datei.equals(that.datei) : that.datei != null) return false;
+        return exhibition != null ? exhibition.equals(that.exhibition) : that.exhibition == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (datei != null ? datei.hashCode() : 0);
+        result = 31 * result + (exhibition != null ? exhibition.hashCode() : 0);
+        return result;
+    }
 }

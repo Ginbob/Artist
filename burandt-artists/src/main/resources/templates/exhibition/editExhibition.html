@@ -42,7 +42,7 @@
                 <div class="row">
                     <th:block th:each="painting : ${exhibition.paintings}">
                         <div class="col-sm-4">
-                            <form method="post" th:action="@{/exhibitions/painting/delete/__${painting.id}__/__${exhibition.id}__}">
+                            <form method="post" th:action="@{/exhibitions/painting/delete/__${painting.id}__/__${painting.exhibition.id}__}">
                                 <div class="thumbnail">
                                     <img th:attr="src=@{/art/exhibition/image/{filename}(filename=${painting.datei})}" />
                                 </div>

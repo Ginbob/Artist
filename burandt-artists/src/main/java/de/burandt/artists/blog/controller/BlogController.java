@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-
-import de.burandt.artists.Util.StringInputUtils;
 import de.burandt.artists.blog.controller.wrapper.BlogPostWrapper;
 import de.burandt.artists.blog.domain.BlogPost;
 import de.burandt.artists.blog.repository.BlogPostRepository;
@@ -81,7 +77,7 @@ public class BlogController {
 	public ModelAndView createNewBlogPost(@RequestParam(name="title") String title, 
 										  @RequestParam(name="blog-post-text") String content,
 										  Principal principal) {
-		BlogPost newBlogPost = new BlogPost(new Date(), title, content);
+		BlogPost newBlogPost = new BlogPost(new Date(), title, content, null);
 		blogPostRepo.save(newBlogPost);
 		ModelAndView model = new ModelAndView(new RedirectView(fromMappingName("blogs").build()));
 		if (principal != null) {
