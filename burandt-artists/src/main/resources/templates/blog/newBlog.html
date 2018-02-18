@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+   <link rel="stylesheet" href="../css/about.css" th:href="@{/css/blog.css}" type="text/css" />
+   <title>Blog Post erstellen</title>
+</head>
+<body>
+   <nav th:replace="fragments/general-includes :: header"></nav>
+   <div class="blog-content">
+      <div class="jumbotron">
+         <h1 align="center">Blog Post erstellen</h1>
+      </div>
+      
+      <div class="jumbotron">
+        <div class="container">
+            <form class="form-group" th:action="${#mvc.url('create_blog_post').build()}" method="post">
+               <input class="form-control blog-input" type="text" id="title" name="title" required="required" placeholder="Überschrift" />
+               <textarea class="form-control blog-input" id="blog-post-text" name="blog-post-text" required="required" placeholder="Text"></textarea>
+               <button type="submit" class="btn btn-primary blog-input">
+                  <i class="fa fa-floppy-o"></i> Speichern
+               </button>
+            </form>
+        </div>
+      </div>
+   </div>
+</body>
+</html>

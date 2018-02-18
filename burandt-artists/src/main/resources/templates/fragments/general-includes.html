@@ -18,6 +18,7 @@
 		crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="../css/general.css"
 		th:href="@{/css/general.css}" type="text/css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </th:block>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
@@ -40,21 +41,29 @@
       <ul class="nav navbar-nav">
         <li class="menu-option"><a th:href="@{/about}">Über mich</a></li>
         <li class="dropdown menu-option">
-          <a th:href="@{/painting}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Malerei <span class="caret"></span></a>
+          <a th:href="@{/art}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bildwerke <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="menu-option"><a th:href="@{/painting/representational}">Gegenständliche Malerei</a></li>
-            <li role="separator" class="dropdown-separator"></li>
-            <li class="menu-option"><a th:href="@{/painting/abstract}">Abstrakte Malerei</a></li>
+              <li><a th:href="@{/art/current}">Aktuelle Werke</a></li>
+              <li role="separator" class="dropdown-separator"></li>
+              <li><a th:href="@{/art/representational}">Gegenständliche Malerei</a></li>
+              <li role="separator" class="dropdown-separator"></li>
+              <li><a th:href="@{/art/abstract}">Abstrakte Malerei</a></li>
+              <li role="separator" class="dropdown-separator"></li>
+              <li><a th:href="@{/art/drawing}">Zeichnungen</a></li>
+              <li role="separator" class="dropdown-separator"></li>
+              <li><a th:href="@{/art/collage}">Collagen</a></li>
           </ul>
         </li>
         <li class="menu-option"><a th:href="@{/exhibitions}"> Ausstellungen</a></li>
         <li class="menu-option"><a th:href="@{/blog}"> Blog</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="menu-option"><a th:href="@{/contact}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
+          <li class="menu-option"><a th:href="@{/contact}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Kontakt</a></li>
+          <li class="menu-option"><a th:href="@{/impressum}">Impressum</a></li>
+          <li th:if="${loggedIn}" class="menu-option"><a th:href="@{/logout}">Logout</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 </body>
 </html>

@@ -7,8 +7,12 @@
 </head>
 <body>
    <nav th:replace="fragments/general-includes :: header"></nav>
-   <div class="blog-content">
+   <div class="container blog-content">
 	   <div class="jumbotron">
+		   <div th:if="${loggedIn}">
+			   <a th:href="@{/blog/new}" class="btn btn-primary"><i class="fa fa-plus"></i> Neuen Eintrag erfassen</a>
+			   <a th:href="@{/blog/edit}" class="btn btn-primary"><i class="fa fa-pencil"></i> Seite bearbeiten</a>
+		   </div>
 	      <h1 align="center">Blog</h1>
 	   </div>
 	   <th:block th:each="blogPost : ${blogPosts}">
@@ -16,7 +20,7 @@
 		     <div class="container">
 		         <label class="date-label" th:text="${#dates.format(blogPost.postDate, 'dd.MM.yyyy')}">Date</label>
 			      <h4 th:text="${blogPost.headline}">Headline</h4>
-			      <p th:text="${blogPost.getPostTextAsString()}"></p>
+			      <p th:text="${blogPost.postText}"></p>
 		     </div>
 		   </div>
 	   </th:block>

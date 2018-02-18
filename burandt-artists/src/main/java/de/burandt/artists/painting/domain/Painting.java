@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-
-import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 public class Painting {
@@ -16,16 +13,28 @@ public class Painting {
 	private Integer id;
 	private String name;
 	private Integer entstehungsjahr;
-	private Integer hoehe;
-	private Integer breite;
+	private Double hoehe;
+	private Double breite;
 	private String technik;
 	private String datei;
 	private String hauptkategorie;
 	private String unterkategorie;
-	
-	@Transient
-	private byte[] imageByte;
+	private boolean markedAsDeleted;
 
+	public Painting() {}
+	
+	public Painting(String name, Integer entstehungsjahr, Double hoehe, Double breite, String technik, String datei, String hauptkategorie, String unterkategorie, boolean markedAsDeleted) {
+		this.name = name;
+		this.entstehungsjahr = entstehungsjahr;
+		this.hoehe = hoehe;
+		this.breite = breite;
+		this.technik = technik;
+		this.datei = datei;
+		this.hauptkategorie = hauptkategorie;
+		this.unterkategorie = unterkategorie;
+		this.markedAsDeleted = markedAsDeleted;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -50,19 +59,19 @@ public class Painting {
 		this.entstehungsjahr = entstehungsjahr;
 	}
 
-	public Integer getHoehe() {
+	public Double getHoehe() {
 		return hoehe;
 	}
 
-	public void setHoehe(Integer hoehe) {
+	public void setHoehe(Double hoehe) {
 		this.hoehe = hoehe;
 	}
 
-	public Integer getBreite() {
+	public Double getBreite() {
 		return breite;
 	}
 
-	public void setBreite(Integer breite) {
+	public void setBreite(Double breite) {
 		this.breite = breite;
 	}
 
@@ -98,16 +107,11 @@ public class Painting {
 		this.unterkategorie = unterkategorie;
 	}
 
-	public byte[] getImageByte() {
-		return imageByte;
+	public boolean isMarkedAsDeleted() {
+		return markedAsDeleted;
 	}
 
-	public void setImageByte(byte[] imageByte) {
-		this.imageByte = imageByte;
-	}
-	
-	public String generateBase64Image()
-	{
-	    return Base64.encodeBase64String(this.imageByte);
+	public void setMarkedAsDeleted(boolean markedAsDeleted) {
+		this.markedAsDeleted = markedAsDeleted;
 	}
 }

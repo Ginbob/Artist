@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <th:block th:replace="fragments/general-includes :: general-includes"></th:block>
+   <link rel="stylesheet" href="../css/about.css" th:href="@{/css/blog.css}" type="text/css" />
+   <title>Blog - Bearbeitung</title>
+</head>
+<body>
+   <nav th:replace="fragments/general-includes :: header"></nav>
+   <div class="blog-content">
+      <div class="jumbotron">
+         <h1 align="center">Blog - Bearbeitungsmodus</h1>
+      </div>
+      <form method="post" th:action="@{/blog/edit}" th:object="${wrapper}" >
+      <th:block th:each="currentBlogPost, stat : *{blogPosts}">
+         <div class="jumbotron">
+           <div class="container">
+               <input type="hidden" th:value="${currentBlogPost.postDate}" th:field="*{blogPosts[__${stat.index}__].postDate}"/>
+               <input type="hidden" th:value="${currentBlogPost.id}" th:field="*{blogPosts[__${stat.index}__].id}"/>
+               <label>Überschrift: </label>
+               <input class="blogpost_header" type="text" th:value="${currentBlogPost.headline}" 
+                     th:field="*{blogPosts[__${stat.index}__].headline}"/>
+               <textarea class="form-control blogpost_text" th:value="${currentBlogPost.postText}"
+                     th:field="*{blogPosts[__${stat.index}__].postText}"></textarea>
+               <label>Als gelöscht markieren:&#32;&#32;</label>
+               <input type="checkbox" th:value="${currentBlogPost.markedAsDeleted}" 
+                     th:field="*{blogPosts[__${stat.index}__].markedAsDeleted}" />
+           </div>
+         </div>
+      </th:block>
+      <div class="jumbotron">
+         <div class="container">
+            <button type="submit" class="btn btn-primary">
+               <i class="fa fa-floppy-o"></i> Speichern
+            </button>
+         </div>
+      </div>
+      </form>
+   </div>
+</body>
+</html>

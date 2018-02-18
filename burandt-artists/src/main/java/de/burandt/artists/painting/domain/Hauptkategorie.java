@@ -1,8 +1,12 @@
 package de.burandt.artists.painting.domain;
 
 public enum Hauptkategorie {
+	CURRENT("current"),
 	REPRESENTATIONAL("representational"),
-	ABSTRACT("abstract");
+	ABSTRACT("abstract"),
+	EXHIBITION("exhibition"),
+	COLLAGE("collage"),
+	DRAWING("drawing");
 	
 	private String hauptkategorie;
 	
