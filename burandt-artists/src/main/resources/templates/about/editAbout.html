@@ -11,23 +11,21 @@
       <div class="container distancer-left">
          <div class="row">
             <div class="col-sm-9">
-               <h2>Ludwig Burandt</h2>
-               <div class="pull-right">
-                  <img class="aboutPicture" src="/images/about/Burandt.jpg" align="left"/>
-               </div>
-                  <p class="justify">
-                     studierte Kunst / Kunstpädagogik an der Universität Osnabrück bei Prof. 
-                     Rainer Mordmüller. Anschließend unterrichtete er 15 Jahre an Kunstschulen in Niedersachsen. 
-                     Er leitete zahlreiche Kunst-Workshops im Rahmen der Hochbegabtenförderung, 
-                     führte verschiedene Projekte an allgemeinbildenden Schulen durch und illustrierte Liederbücher.
-                  </p>
-                  <p class="justify">
-                     Beruflich führte ihn der Weg für sieben Jahre nach Duisburg, 
-                     wo er als Referent für das landesweite Weiterbildungsprojekt Toni singt tätig wurde. 
-                     Nach dieser Zeit unterrichtete er das Fach Kunst an der Bertolt-Brecht-Gesamtschule Löhne und am Gymnasium Bad Iburg. 
-                     Seit August 2017 ist er Kunstlehrer am Werner-von-Siemens-Gymnasium Gronau. 
-                     Ludwig Burandt wohnt in Hagen a.T.W., wo er auch sein Atelier hat.
-                  </p>
+               <form method="post" th:action="@{/about/edit}" th:object="${aboutWrapper}"  enctype="multipart/form-data">
+                   <label>Titel</label>
+                   <input type="text" th:value="${about.title}" th:field="*{about.title}" name="title" id="title-input" />
+                   <label>Text:</label>
+                   <textarea class="form-control about-textarea" th:value="${about.text}" th:field="*{about.text}"></textarea>
+
+                   <input type="file" class="form-control" id="files" name="files" accept="image/*" multiple="multiple"/>
+
+                   <button type="submit" class="btn btn-primary">
+                       <i class="fa fa-floppy-o"></i> Speichern
+                   </button>
+                </form>
+                <div>
+                    <img th:attr="src=@{/art/__${category}__/image/{filename}(filename=${about.filename})}" />
+                </div>
             </div>
          </div>
       </div>

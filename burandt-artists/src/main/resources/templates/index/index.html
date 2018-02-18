@@ -9,11 +9,16 @@
 	<nav th:replace="fragments/general-includes :: header"></nav>
 	<div class="jumbotron">
 		<div class="container container-index">
-			<h3>Herzlich Willkommen</h3>
-			<p>auf Louis Website</p>
+			<div th:if="${loggedIn}">
+				<a th:href="@{/index/edit}" class="btn btn-primary"><i class="fa fa-pencil"></i> Seite bearbeiten</a>
+			</div>
+			<h3 th:text="${index.headline}">Herzlich Willkommen</h3>
+			<p th:text="${index.paragraph}">auf Louis Website</p>
 			<hr class="gradient-style" />
 			<div class="thumbnail">
-				<img src="https://www.noz-cdn.de/media/2013/08/31/em-bringt-abstrakter-kunst-em-ernsthaftigkeit-b_full.jpg" />
+				<a th:href="@{/art/__${category}__/image/{filename}(filename=${index.imageFileName})}">
+					<img th:attr="src=@{/art/__${category}__/image/{filename}(filename=${index.imageFileName})}" />
+				</a>
 			</div>
 		</div>
 	</div>

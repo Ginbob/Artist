@@ -31,14 +31,19 @@ public class BlogPost {
 	
 	@Column
 	private boolean markedAsDeleted;
+
+	@Column
+	private String linkToPainting;
 	
 	public BlogPost() {}
-	
-	public BlogPost(Date postDate, String headline, String postText) {
+
+	public BlogPost(Date postDate, String headline, String postText, String linkToPainting) {
 		super();
 		this.postDate = postDate;
 		this.headline = headline;
 		this.postText = postText;
+		this.linkToPainting = linkToPainting;
+
 	}
 
 	public Date getPostDate() {
@@ -79,5 +84,13 @@ public class BlogPost {
 
 	public void setMarkedAsDeleted(boolean markedAsDeleted) {
 		this.markedAsDeleted = markedAsDeleted;
+	}
+
+	public String getLinkToPainting() {
+		return linkToPainting;
+	}
+
+	public void setLinkToPainting(String linkToPainting) {
+		this.linkToPainting = linkToPainting;
 	}
 }

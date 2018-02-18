@@ -1,6 +1,5 @@
 package de.burandt.artists.exhibition.domain;
 
-import de.burandt.artists.painting.domain.Painting;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class Exhibition {
 	private String description;
 	private boolean currentFuture;
 	private String link;
-	@OneToMany(mappedBy = "exhibition", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "exhibition", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<ExhibitionPainting> paintings;
 
     public Exhibition() {

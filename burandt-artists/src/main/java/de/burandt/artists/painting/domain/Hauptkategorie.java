@@ -6,7 +6,9 @@ public enum Hauptkategorie {
 	ABSTRACT("abstract"),
 	EXHIBITION("exhibition"),
 	COLLAGE("collage"),
-	DRAWING("drawing");
+	DRAWING("drawing"),
+	ABOUT("about"),
+	INDEX("index");
 	
 	private String hauptkategorie;
 	

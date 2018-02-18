@@ -38,11 +38,11 @@
                             <input type="number" th:field="*{paintings[__${stat.index}__].breite}"/><br/>
 
                             <label>Entstehungsjahr</label>
-                            <input type="number" th:field="*{paintings[__${stat.index}__].entstehungsjahr}"/><br/>
+                            <input type="number" th:field="*{paintings[__${stat.index}__].entstehungsjahr}"/><br/><br/>
 
-                            <label>Als gelöscht markieren:&#32;&#32;</label>
                             <input type="checkbox" th:value="${painting.markedAsDeleted}"
-                                   th:field="*{paintings[__${stat.index}__].markedAsDeleted}" />
+                                th:field="*{paintings[__${stat.index}__].markedAsDeleted}" />
+                            <label>Löschen</label>
                         </div>
                     </div>
                 </th:block>

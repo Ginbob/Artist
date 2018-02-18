@@ -22,7 +22,9 @@
                 <div class="col-xs-9 col-sm-5 col-md-4">
                     <div class="painting-container">
                         <div class="thumbnail">
-                            <img th:attr="src=@{/art/__${category}__/image/{filename}(filename=${painting.datei})}" />
+                            <a th:href="@{/art/__${category}__/image/{filename}(filename=${painting.datei})}">
+                                <img th:attr="src=@{/art/__${category}__/image/{filename}(filename=${painting.datei})}" />
+                            </a>
                         </div>
                         <h5 th:text="${painting.name}">Bildname</h5>
                         <p th:text="${painting.entstehungsjahr}">Entstehungsjahr</p>

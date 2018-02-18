@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import de.burandt.artists.painting.domain.Hauptkategorie;
 import de.burandt.artists.painting.exception.CannotResolvePaintingException;
-import de.burandt.artists.painting.util.PaintingUtils;
+import de.burandt.artists.painting.util.PaintingFileUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -52,7 +52,7 @@ public class PaintingController {
     @ResponseBody
     public byte[] getImage (@PathVariable(value = "filename") String filename,
     		@PathVariable(value = "category") String category) throws IOException, CannotResolvePaintingException {
-    	return PaintingUtils.mapFileNameToByteArray(Hauptkategorie.valueOf(category.toUpperCase()), filename);
+    	return PaintingFileUtils.mapFileNameToByteArray(Hauptkategorie.valueOf(category.toUpperCase()), filename);
     }
 
 
@@ -60,7 +60,7 @@ public class PaintingController {
     public ModelAndView paintingAbstract(@PathVariable(value = "category") String category,
                                          Principal principal) {
         ModelAndView model = new ModelAndView("painting/view");
-        model.addObject("paintings", paintingService.findAllPaintingsByCategoryForView(Hauptkategorie.valueOf(category.toUpperCase())));
+        model.addObject("paintings", paintingService.findAllPaintingsByCategory(Hauptkategorie.valueOf(category.toUpperCase())));
         model.addObject("title", UI_TEXTS.get(category + ".title.show"));
         model.addObject("category", category);
         if(principal != null) {

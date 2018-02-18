@@ -22,9 +22,9 @@
                      th:field="*{blogPosts[__${stat.index}__].headline}"/>
                <textarea class="form-control blogpost_text" th:value="${currentBlogPost.postText}"
                      th:field="*{blogPosts[__${stat.index}__].postText}"></textarea>
-               <label>Als gelöscht markieren:&#32;&#32;</label>
-               <input type="checkbox" th:value="${currentBlogPost.markedAsDeleted}" 
+               <input type="checkbox" th:value="${currentBlogPost.markedAsDeleted}"
                      th:field="*{blogPosts[__${stat.index}__].markedAsDeleted}" />
+               <label>Löschen</label>
            </div>
          </div>
       </th:block>

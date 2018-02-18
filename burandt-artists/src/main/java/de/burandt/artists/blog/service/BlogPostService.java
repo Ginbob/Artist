@@ -1,6 +1,7 @@
 package de.burandt.artists.blog.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,10 @@ public class BlogPostService {
 	private BlogPostRepository blogPostRepo;
 	
 	public void updateBlogPosts(List<BlogPost> blogPosts) {
-		blogPostRepo.save(blogPosts);
+		List<BlogPost> postsToDelete = blogPosts.stream().filter(post -> post.isMarkedAsDeleted()).collect(Collectors.toList());
+        blogPosts.removeAll(postsToDelete);
+        blogPostRepo.delete(postsToDelete);
+        blogPostRepo.save(blogPosts);
 	}
 	
 }

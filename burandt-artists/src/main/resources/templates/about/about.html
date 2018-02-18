@@ -9,25 +9,18 @@
    <nav th:replace="fragments/general-includes :: header"></nav>
    <div class="jumbotron">
       <div class="container distancer-left">
+          <div th:if="${loggedIn}">
+            <a th:href="@{/about/edit}" class="btn btn-primary"><i class="fa fa-plus"></i> Seite bearbeiten</a>
+         </div>
          <div class="row">
             <div class="col-sm-9">
-	            <h2>Ludwig Burandt</h2>
+	            <h2 th:text="${about.title}">Ludwig Burandt</h2>
 	            <div class="pull-right">
-	               <img class="aboutPicture" src="/images/about/Burandt.jpg" align="left"/>
+                    <img class="aboutPicture" th:attr="src=@{/art/about/image/{filename}(filename=${about.filename})}" align="left"/>
 	            </div>
-			         <p class="justify">
-					      studierte Kunst / Kunstpädagogik an der Universität Osnabrück bei Prof. 
-					      Rainer Mordmüller. Anschließend unterrichtete er 15 Jahre an Kunstschulen in Niedersachsen. 
-					      Er leitete zahlreiche Kunst-Workshops im Rahmen der Hochbegabtenförderung, 
-					      führte verschiedene Projekte an allgemeinbildenden Schulen durch und illustrierte Liederbücher.
-					   </p>
-	               <p class="justify">
-					      Beruflich führte ihn der Weg für sieben Jahre nach Duisburg, 
-					      wo er als Referent für das landesweite Weiterbildungsprojekt Toni singt tätig wurde. 
-					      Nach dieser Zeit unterrichtete er das Fach Kunst an der Bertolt-Brecht-Gesamtschule Löhne und am Gymnasium Bad Iburg. 
-					      Seit August 2017 ist er Kunstlehrer am Werner-von-Siemens-Gymnasium Gronau. 
-			            Ludwig Burandt wohnt in Hagen a.T.W., wo er auch sein Atelier hat.
-			         </p>
+				<th:block th:each="textPart : ${textParts}">
+					<p class="justify" th:text="${textPart}"></p>
+				</th:block>
             </div>
          </div>
       </div>
