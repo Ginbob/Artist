@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -44,7 +45,7 @@ public class ExhibitionService {
 
         }).collect(Collectors.toList());
 
-        exhibitionPaintingRepository.save(paintings);
+        exhibitionPaintingRepository.saveAll(paintings);
         return true;
     }
 
@@ -58,11 +59,11 @@ public class ExhibitionService {
             } catch (IOException e) {
                 LOG.info("Something went wrong while saving exhibition painting files", e);
             }
-            return new ExhibitionPainting(image.getOriginalFilename(), exhibitionRepository.findOne(exhibitionId));
+            return new ExhibitionPainting(image.getOriginalFilename(), exhibitionRepository.findById(exhibitionId).orElseThrow(EntityNotFoundException::new));
 
         }).collect(Collectors.toList());
 
-        exhibitionPaintingRepository.save(paintings);
+        exhibitionPaintingRepository.saveAll(paintings);
         return true;
     }
 }

@@ -21,6 +21,8 @@ import de.burandt.artists.exhibition.domain.Exhibition;
 import de.burandt.artists.exhibition.repository.ExhibitionRepository;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityNotFoundException;
+
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 
 @Controller
@@ -77,7 +79,7 @@ public class ExhibitionController {
             }
         });
         if(!exhibitionsToBeUpdated.isEmpty()) {
-            exhibitionRepo.save(exhibitionsToBeUpdated);
+            exhibitionRepo.saveAll(exhibitionsToBeUpdated);
         }
     }
 
@@ -133,7 +135,7 @@ public class ExhibitionController {
     @GetMapping(path="/detail/{id}", name="show_exhibition_detail")
     public ModelAndView showExhibitionDetail(@PathVariable(value = "id") Integer id,
                                              Principal principal) {
-        Exhibition exhibition = exhibitionRepo.findOne(id);
+        Exhibition exhibition = exhibitionRepo.findById(id).orElseThrow(EntityNotFoundException::new);
         ModelAndView model = new ModelAndView("exhibition/exhibitionDetail")
                 .addObject("exhibition", exhibition);
         if (principal != null) {
@@ -145,7 +147,7 @@ public class ExhibitionController {
     @GetMapping(path="/{id}/edit", name="edit_exhibitions")
     public ModelAndView editExhibitions(@PathVariable(name = "id") Integer id,
                                         Principal principal) {
-        Exhibition exhibition = exhibitionRepo.findOne(id);
+        Exhibition exhibition = exhibitionRepo.findById(id).orElseThrow(EntityNotFoundException::new);
         ModelAndView model = new ModelAndView("exhibition/editExhibition")
                 .addObject("exhibition", exhibition)
                 .addObject("exhibitionWrapper", new ExhibitionWrapper(exhibition));
@@ -176,7 +178,7 @@ public class ExhibitionController {
     public ModelAndView deleteExhibitionPainting(@PathVariable(value = "id") Integer id,
                                                  @PathVariable(value = "exhibitionId") Integer exhibitionId,
                                                  Principal principal) {
-        exhibitionPaintingRepository.delete(id);
+        exhibitionPaintingRepository.deleteById(id);
         return new ModelAndView(new RedirectView(fromMappingName("edit_exhibitions").arg(0, exhibitionId).arg(1, principal).build()));
     }
 
@@ -192,7 +194,7 @@ public class ExhibitionController {
     @PostMapping(path="/delete/{id}", name="delete_exhibition")
     public ModelAndView deleteExhibition(@PathVariable(value = "id") Integer id,
                                          Principal principal) {
-        exhibitionRepo.delete(id);
+        exhibitionRepo.deleteById(id);
         return new ModelAndView(new RedirectView(fromMappingName("exhibition").arg(0, principal).build()));
     }
 }

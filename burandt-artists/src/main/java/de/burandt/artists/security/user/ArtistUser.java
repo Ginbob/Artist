@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class ArtistUser {
 
     @Id
     private String username;
@@ -13,9 +13,9 @@ public class User {
     @Column
     private String password;
  
-    protected User() {}
+    protected ArtistUser() {}
  
-    public User(String userName, String password) {
+    public ArtistUser(String userName, String password) {
         this.username = userName;
         this.password = password;
     }

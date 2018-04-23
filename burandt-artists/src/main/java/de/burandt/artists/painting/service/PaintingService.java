@@ -76,7 +76,7 @@ public class PaintingService {
         List<Painting> paintingsToDelete = paintings.stream().filter(painting -> painting.isMarkedAsDeleted()).collect(Collectors.toList());
         paintings.removeAll(paintingsToDelete);
         deletePaintings(paintingsToDelete);
-	    paintingRepository.save(paintings);
+	    paintingRepository.saveAll(paintings);
     }
 
     private void deletePaintings(List<Painting> paintingsToDelete) {

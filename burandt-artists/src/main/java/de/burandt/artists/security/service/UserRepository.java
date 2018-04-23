@@ -2,8 +2,11 @@ package de.burandt.artists.security.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import de.burandt.artists.security.user.User;
+import de.burandt.artists.security.user.ArtistUser;
 
-interface UserRepository extends JpaRepository<User, String>{
-	User findByUsername(String username);
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<ArtistUser, String>{
+
+	Optional<ArtistUser> findOneByUsername(String username);
 }

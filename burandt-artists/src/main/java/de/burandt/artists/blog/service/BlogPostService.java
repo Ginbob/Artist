@@ -18,8 +18,8 @@ public class BlogPostService {
 	public void updateBlogPosts(List<BlogPost> blogPosts) {
 		List<BlogPost> postsToDelete = blogPosts.stream().filter(post -> post.isMarkedAsDeleted()).collect(Collectors.toList());
         blogPosts.removeAll(postsToDelete);
-        blogPostRepo.delete(postsToDelete);
-        blogPostRepo.save(blogPosts);
+        blogPostRepo.deleteAll(postsToDelete);
+        blogPostRepo.saveAll(blogPosts);
 	}
 	
 }
